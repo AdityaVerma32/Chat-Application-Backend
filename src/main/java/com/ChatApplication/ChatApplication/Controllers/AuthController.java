@@ -1,5 +1,6 @@
 package com.ChatApplication.ChatApplication.Controllers;
 
+import com.ChatApplication.ChatApplication.DTO.LoginUser;
 import com.ChatApplication.ChatApplication.Model.UserModel;
 import com.ChatApplication.ChatApplication.Services.UserService;
 import com.ChatApplication.ChatApplication.Utility.ApiResponse;
@@ -23,8 +24,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse> loginUser(@RequestBody String email){
-        return userService.loginUser(email);
+    public ResponseEntity<ApiResponse> loginUser(@RequestBody LoginUser loginUser){
+        return userService.loginUser(loginUser);
     }
 
 }

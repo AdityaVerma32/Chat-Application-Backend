@@ -1,13 +1,9 @@
 package com.ChatApplication.ChatApplication.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users")  // Explicitly set the table name
 
 public class UserModel {
 

@@ -2,11 +2,9 @@ package com.ChatApplication.ChatApplication.Controllers;
 
 import com.ChatApplication.ChatApplication.Model.MessageModel;
 import com.ChatApplication.ChatApplication.Model.UserModel;
-import com.ChatApplication.ChatApplication.Repository.ChatMessageRepo;
 import com.ChatApplication.ChatApplication.Services.ChatMessageService;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
