@@ -8,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class UserService {
 
@@ -49,12 +47,13 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<ApiResponse> getAllUsers() {
+    public ResponseEntity<ApiResponse> getAllUsers(LoginUser loginUser) {
+        System.out.println("Email: "+loginUser.getEmail());
         return new ResponseEntity<>(
                 new ApiResponse(
                         true,
                         "List of Users",
-                        userRepo.findAll()
+                        userRepo.findByEmailNot(loginUser.getEmail())
                 ),
                 HttpStatus.OK
         );

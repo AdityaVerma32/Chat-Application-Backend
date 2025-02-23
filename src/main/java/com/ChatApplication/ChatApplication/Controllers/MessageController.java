@@ -17,7 +17,7 @@ public class MessageController {
         this.chatMessageService = chatMessageService;
     }
 
-    @GetMapping("/{senderId}/{receiverId}")
+    @GetMapping("/messages/{senderId}/{receiverId}")
     public ResponseEntity<ApiResponse> getMessage(
             @PathVariable("senderId") Integer sId,
             @PathVariable("receiverId") Integer rId) {

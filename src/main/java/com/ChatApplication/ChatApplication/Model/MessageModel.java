@@ -25,7 +25,7 @@ public class MessageModel {
     private String content;
 
     @Column(nullable = false)
-    private boolean isDelivered;
+    private boolean isRead;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date timestamp = new Date();
@@ -62,12 +62,12 @@ public class MessageModel {
         this.content = content;
     }
 
-    public boolean isDelivered() {
-        return isDelivered;
+    public boolean isRead() {
+        return isRead;
     }
 
-    public void setDelivered(boolean delivered) {
-        isDelivered = delivered;
+    public void setIsRead(boolean delivered) {
+        isRead = delivered;
     }
 
     public Date getTimestamp() {
@@ -78,12 +78,12 @@ public class MessageModel {
         this.timestamp = timestamp;
     }
 
-    public MessageModel(Integer id, UserModel sender, UserModel receiver, String content, boolean isDelivered, Date timestamp) {
+    public MessageModel(Integer id, UserModel sender, UserModel receiver, String content, boolean isRead, Date timestamp) {
         this.id = id;
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
-        this.isDelivered = isDelivered;
+        this.isRead = isRead;
         this.timestamp = timestamp;
     }
 
@@ -97,7 +97,7 @@ public class MessageModel {
                 ", sender=" + sender +
                 ", receiver=" + receiver +
                 ", content='" + content + '\'' +
-                ", isDelivered=" + isDelivered +
+                ", isDelivered=" + isRead +
                 ", timestamp=" + timestamp +
                 '}';
     }
