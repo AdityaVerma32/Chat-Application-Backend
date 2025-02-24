@@ -31,7 +31,7 @@ public class ChatController {
      * and sends it in real-time to the recipient only if they have that chat open.
      */
     @MessageMapping("/chat")
-    public void sendPrivateMessage(@Payload MessageDTO messageDTO, SimpMessageHeaderAccessor headerAccessor) {
+    public void sendMessage(@Payload MessageDTO messageDTO, SimpMessageHeaderAccessor headerAccessor) {
 
         System.out.println(messageDTO.toString());
         String receiver = messageDTO.getReceiverEmail();
@@ -45,7 +45,7 @@ public class ChatController {
         }
 
         MessageModel messageModel = chatMessageService.saveMessage(messageDTO);
-        simpMessagingTemplate.convertAndSendToUser(receiver, "/queue/messages", messageModel);
+        simpMessagingTemplate.convertAndSend("/topic/chat-" + receiver, messageModel);
 
     }
 
