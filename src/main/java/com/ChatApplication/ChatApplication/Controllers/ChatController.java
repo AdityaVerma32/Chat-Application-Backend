@@ -1,5 +1,6 @@
 package com.ChatApplication.ChatApplication.Controllers;
 
+import com.ChatApplication.ChatApplication.DTO.LoginUser;
 import com.ChatApplication.ChatApplication.DTO.MessageDTO;
 import com.ChatApplication.ChatApplication.Model.MessageModel;
 import com.ChatApplication.ChatApplication.Services.ChatMessageService;
@@ -10,9 +11,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ChatController {
@@ -35,7 +34,6 @@ public class ChatController {
 
         System.out.println(messageDTO.toString());
         String receiver = messageDTO.getReceiverEmail();
-        System.out.println(" Receiver is : " + receiver);
 
         String senderEmail = (String) headerAccessor.getSessionAttributes().get("user-email");
 
@@ -56,5 +54,10 @@ public class ChatController {
     @ResponseBody
     public ResponseEntity<ApiResponse> getChatHistory(@PathVariable String user1, @PathVariable String user2) {
         return chatMessageService.getChatHistory(user1, user2);
+    }
+
+    @GetMapping("/chats/all")
+    public ResponseEntity<ApiResponse> getAllChats(@RequestParam String email){
+        return chatMessageService.getAllChatMessages(email);
     }
 }

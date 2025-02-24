@@ -48,7 +48,6 @@ public class UserService {
     }
 
     public ResponseEntity<ApiResponse> getAllUsers(LoginUser loginUser) {
-        System.out.println("Email: "+loginUser.getEmail());
         return new ResponseEntity<>(
                 new ApiResponse(
                         true,

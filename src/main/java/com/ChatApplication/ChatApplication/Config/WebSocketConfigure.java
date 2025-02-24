@@ -10,11 +10,18 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfigure implements WebSocketMessageBrokerConfigurer {
 
+    private final WebSocketInterceptor webSocketInterceptor;
+
+    public WebSocketConfigure(WebSocketInterceptor webSocketInterceptor) {
+        this.webSocketInterceptor = webSocketInterceptor;
+    }
+
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registery) {
         registery.addEndpoint("/ws")
                 .setAllowedOrigins("http://localhost:5173")
-                .addInterceptors(new WebSocketInterceptor())
+                .addInterceptors(webSocketInterceptor)
                 .withSockJS();
     }
 

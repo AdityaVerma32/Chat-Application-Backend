@@ -13,7 +13,9 @@ import java.util.List;
 
 @Repository
 public interface ChatMessageRepo extends JpaRepository<MessageModel, Integer> {
-    @Query("SELECT m FROM MessageModel m WHERE (m.sender.id = :sUserId AND m.receiver.id = :rUserId) " +
-            "OR (m.sender.id = :rUserId AND m.receiver.id = :sUserId) ORDER BY m.timestamp")
+    @Query("SELECT m FROM MessageModel m WHERE (m.sender.id = :sUserId AND m.receiver.id = :rUserId) OR (m.sender.id = :rUserId AND m.receiver.id = :sUserId) ORDER BY m.timestamp")
     List<MessageProjection> findBySenderAndReceiver(Integer sUserId, Integer rUserId);
+
+    @Query("Select m from MessageModel m WHERE m.sender.id = :id OR m.receiver.id = :id")
+    List<MessageProjection> findBySenderOrReceiver(Integer id);
 }

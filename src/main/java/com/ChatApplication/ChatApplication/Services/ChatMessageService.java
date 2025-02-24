@@ -1,5 +1,6 @@
 package com.ChatApplication.ChatApplication.Services;
 
+import com.ChatApplication.ChatApplication.DTO.LoginUser;
 import com.ChatApplication.ChatApplication.DTO.MessageDTO;
 import com.ChatApplication.ChatApplication.Model.MessageModel;
 import com.ChatApplication.ChatApplication.Model.UserModel;
@@ -45,5 +46,11 @@ public class ChatMessageService {
         UserModel rUser = userRepo.findByEmail(user2);
         List<MessageProjection> messagesList = chatMessageRepo.findBySenderAndReceiver(sUser.getId(), rUser.getId());
         return new ResponseEntity<>(new ApiResponse(true, "List of Messages", messagesList), HttpStatus.OK);
+    }
+
+    public ResponseEntity<ApiResponse> getAllChatMessages(String CurrEmail) {
+        UserModel currUser = userRepo.findByEmail(CurrEmail);
+        List<MessageProjection> messageList = chatMessageRepo.findBySenderOrReceiver(currUser.getId());
+        return new ResponseEntity<>(new ApiResponse(true, "List Of All Messages.", messageList), HttpStatus.OK);
     }
 }
