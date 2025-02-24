@@ -20,7 +20,17 @@ public class UserModel {
     @Column(nullable = false)
     private String phone;
 
+    private String password;
+
     private boolean isOnline;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Integer getId() {
         return id;
@@ -29,6 +39,7 @@ public class UserModel {
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public String getEmail() {
         return email;
@@ -62,12 +73,13 @@ public class UserModel {
         isOnline = online;
     }
 
-    public UserModel(Integer id, String email, String name, String phone, boolean isOnline) {
+    public UserModel(Integer id, String email, String name, String phone, boolean isOnline, String password) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.phone = phone;
         this.isOnline = isOnline;
+        this.password = password;
     }
 
     public UserModel() {
@@ -80,6 +92,7 @@ public class UserModel {
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
                 ", isOnline=" + isOnline +
                 '}';
     }

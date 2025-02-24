@@ -4,6 +4,7 @@ import com.ChatApplication.ChatApplication.DTO.LoginUser;
 import com.ChatApplication.ChatApplication.Model.UserModel;
 import com.ChatApplication.ChatApplication.Services.UserService;
 import com.ChatApplication.ChatApplication.Utility.ApiResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +25,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse> loginUser(@RequestBody LoginUser loginUser){
-        return userService.loginUser(loginUser);
+    public ResponseEntity<ApiResponse> loginUser(@RequestBody LoginUser loginUser,HttpServletRequest request ){
+        return userService.loginUser(loginUser,request);
     }
 
 }

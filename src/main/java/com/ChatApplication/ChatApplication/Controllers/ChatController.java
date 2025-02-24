@@ -45,7 +45,9 @@ public class ChatController {
         }
 
         MessageModel messageModel = chatMessageService.saveMessage(messageDTO);
+        System.out.println("🚀 Sending message to: user/" + receiver + "/queue/messages");
         simpMessagingTemplate.convertAndSendToUser(receiver, "/queue/messages", messageModel);
+        System.out.println("✅ Message sent via WebSocket");
 
     }
 

@@ -19,6 +19,7 @@ public class UserController {
 
     @PostMapping("/getAllUsers")
     public ResponseEntity<ApiResponse> getAllUsers(@RequestBody LoginUser currrentUser){
+        System.out.println("Debug 1");
         return userService.getAllUsers(currrentUser);
     }
 
