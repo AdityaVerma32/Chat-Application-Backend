@@ -40,17 +40,10 @@ public class ChatMessageService {
         return chatMessageRepo.save(messageModel);
     }
 
-    public ResponseEntity<ApiResponse> getMessage(Integer sId, Integer rId) {
-        Optional<UserModel> sUser = userRepo.findById(sId);
-        Optional<UserModel> rUser = userRepo.findById(rId);
-        List<MessageModel> messages = chatMessageRepo.findBySenderAndReceiverOrReceiverAndSender(sUser.get(), rUser.get(), rUser.get(), sUser.get());
-        return new ResponseEntity<>(new ApiResponse(true, "List of Messages", messages), HttpStatus.OK);
-    }
-
     public ResponseEntity<ApiResponse> getChatHistory(String user1, String user2) {
         UserModel sUser = userRepo.findByEmail(user1);
         UserModel rUser = userRepo.findByEmail(user2);
-        List<MessageProjection> messagesList = chatMessageRepo.findBySenderAndReceiverOrReceiverAndSenderOrderByTimestamp(sUser, rUser, rUser, sUser);
+        List<MessageProjection> messagesList = chatMessageRepo.findBySenderAndReceiver(sUser.getId(), rUser.getId());
         return new ResponseEntity<>(new ApiResponse(true, "List of Messages", messagesList), HttpStatus.OK);
     }
 }

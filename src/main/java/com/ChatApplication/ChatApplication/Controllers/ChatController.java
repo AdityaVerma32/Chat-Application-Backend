@@ -44,8 +44,8 @@ public class ChatController {
             return;
         }
 
-        MessageModel messageModel = chatMessageService.saveMessage(messageDTO);
-        simpMessagingTemplate.convertAndSend("/topic/chat-" + receiver, messageModel);
+        chatMessageService.saveMessage(messageDTO);
+        simpMessagingTemplate.convertAndSend("/topic/chat-" + receiver, messageDTO);
 
     }
 
