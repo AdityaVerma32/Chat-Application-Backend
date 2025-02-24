@@ -23,7 +23,7 @@ public class WebSocketInterceptor implements HandshakeInterceptor {
 
         if (query != null && query.contains("user-email=")) {
             String email = query.split("user-email=")[1]; // Extract email
-//            System.out.println("User Connected: " + email);
+            System.out.println("User Connected: " + email);
             attributes.put("email", email); // Store email in session attributes
         } else {
             System.out.println("No email found in query params");

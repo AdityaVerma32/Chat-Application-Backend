@@ -24,32 +24,32 @@ public class WebSocketEventListener {
 
     @EventListener
     public void handleSessionConnected(SessionConnectedEvent event) {
-        StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-        // Debug: Print all headers
-        System.out.println("All Headers: " + headerAccessor.toNativeHeaderMap());
-        // Fetch email from session attributes (set in HandshakeInterceptor)
-        String email = (String) headerAccessor.getSessionAttributes().get("email");
-        System.out.println("On Connection. Email is: "+email);
-
-        if (email != null) {
-            UserModel user = userRepo.findByEmail(email);
-            if (user != null) {
-                user.setOnline(true);
-                userRepo.save(user);
-            }
-        }
+//        StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
+//        // Debug: Print all headers
+//        System.out.println("All Headers: " + headerAccessor.toNativeHeaderMap());
+//        // Fetch email from session attributes (set in HandshakeInterceptor)
+//        String email = (String) headerAccessor.getSessionAttributes().get("email");
+//        System.out.println("On Connection. Email is: "+email);
+//
+//        if (email != null) {
+//            UserModel user = userRepo.findByEmail(email);
+//            if (user != null) {
+//                user.setOnline(true);
+//                userRepo.save(user);
+//            }
+//        }
     }
 
     @EventListener
     public void handleSessionDisconnect(SessionDisconnectEvent event) {
-        StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
-        String email = headerAccessor.getFirstNativeHeader("email");
-        if (email != null) {
-            UserModel user = userRepo.findByEmail(email);
-            if (user != null) {
-                user.setOnline(false);
-                userRepo.save(user);
-            }
-        }
+//        StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
+//        String email = headerAccessor.getFirstNativeHeader("email");
+//        if (email != null) {
+//            UserModel user = userRepo.findByEmail(email);
+//            if (user != null) {
+//                user.setOnline(false);
+//                userRepo.save(user);
+//            }
+//        }
     }
 }

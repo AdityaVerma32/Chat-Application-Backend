@@ -35,7 +35,7 @@ public class ChatController {
         System.out.println(messageDTO.toString());
         String receiver = messageDTO.getReceiverEmail();
 
-        String senderEmail = (String) headerAccessor.getSessionAttributes().get("user-email");
+        String senderEmail = (String) headerAccessor.getSessionAttributes().get("email");
 
         if (senderEmail == null) {
             System.out.println("❌ Error: Sender email not found in session!");
